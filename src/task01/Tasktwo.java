@@ -5,7 +5,7 @@ Example,
 n =165          result =  651
  */
 
-package tasktwo;
+package task01;
 
 import java.util.Scanner;
 

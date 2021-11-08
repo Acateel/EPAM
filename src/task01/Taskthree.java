@@ -6,7 +6,7 @@ n = 1234     result = 4
 n = 246      result = 0
  */
 
-package taskthree;
+package task01;
 
 import java.util.Scanner;
 

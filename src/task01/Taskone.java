@@ -9,7 +9,7 @@ n = 4     result =  16
 n = -5    result =  5
 n = 0     result = 0
  */
-package taskone;
+package task01;
 
 import java.util.Scanner;
 

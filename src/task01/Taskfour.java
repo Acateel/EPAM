@@ -6,7 +6,7 @@ Example,
 n = 14 (10) = 1110 (2)              result =  3
 n = 128 (10) = 1000 0000 (2)        result  =  1
  */
-package taskfour;
+package task01;
 
 import java.util.Scanner;
 
