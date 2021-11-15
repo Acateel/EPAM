@@ -10,3 +10,9 @@ N
 src/epam/task01/Taskthree.java,c\4\c45e2df024f3c58ab0c3ae2e4f10e4c00a8003af
 M
 src/epam/task01/Taskfour.java,3\4\344e9024d29e38d44007c5a63658213f691209ea
+K
+src/epam/task02/Task02.java,1\f\1f314ecbb75ff1b7fd6d99b8e7cad5fd2a46b2e6
+K
+src/epam/task02/Task03.java,3\5\3542bf09f66025a33a1169e58cd5fe50d064cda8
+K
+src/epam/task02/Task01.java,9\a\9aeeed9adf1e51b510e2d36c25906547343b8ba7

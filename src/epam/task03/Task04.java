@@ -31,7 +31,7 @@ public class Task04 {
         return new Scanner(System.in).nextInt();
     }
 
-    private static int symGeometricElements(int a1, double t, int alim) {
+    public static int symGeometricElements(int a1, double t, int alim) {
         if(a1 < alim){
             return 0;
         }

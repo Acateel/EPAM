@@ -24,7 +24,7 @@ public class Task03 {
         return new Scanner(System.in).nextInt();
     }
 
-    private static long multArithmeticElements(int a1, int t, int n) {
+    public static long multArithmeticElements(int a1, int t, int n) {
         if (n == 0) {
             return 1;
         }
