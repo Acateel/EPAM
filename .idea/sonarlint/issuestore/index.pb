@@ -16,3 +16,7 @@ K
 src/epam/task02/Task03.java,3\5\3542bf09f66025a33a1169e58cd5fe50d064cda8
 K
 src/epam/task02/Task01.java,9\a\9aeeed9adf1e51b510e2d36c25906547343b8ba7
+K
+src/epam/task03/Task01.java,9\f\9f98662d4502293f8570ac875408087b1dd46df0
+K
+src/epam/task03/Task02.java,e\f\efbf553fa7bd6751cf219a96670930592609deef
