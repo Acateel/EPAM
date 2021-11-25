@@ -34,3 +34,15 @@ N
 src/epam/task03/SortOrder.java,9\2\92bbf2e02d7234816d38cda1c4ccb03cc2e58c7b
 a
 1src/epam/task03/tests/epam/task03/Task04Test.java,c\b\cbca00ff35042626a4f372d25d46a978a8f91796
+L
+src/epam/task05/Program.java,8\8\881d4de37c795273e73380f98eea35c69703892d
+T
+$src/epam/task05/ArrayRectangles.java,7\e\7e223bc62d167c41b4fbc64ccc9253c9cd726951
+N
+src/epam/task05/Rectangle.java,a\8\a88de39045816892ce603c8740f4b17b7e1b2238
+i
+9src/epam/task05/test/epam/task05/ArrayRectanglesTest.java,c\5\c5989163ffc6007c7a4e16373a8e9b70da42bd64
+c
+3src/epam/task05/test/epam/task05/RectangleTest.java,0\e\0e2adce999e71424a781149d320a40ea5996dab0
+L
+src/epam/task06/Program.java,3\9\397e214dff68eaf816e6454504dbba6fb4cb7e59
