@@ -46,3 +46,39 @@ c
 3src/epam/task05/test/epam/task05/RectangleTest.java,0\e\0e2adce999e71424a781149d320a40ea5996dab0
 L
 src/epam/task06/Program.java,3\9\397e214dff68eaf816e6454504dbba6fb4cb7e59
+L
+src/epam/task06/Company.java,5\8\5871cb690f6ff128a8623fc1a67a5d12d735200a
+a
+1src/epam/task06/test/epam/task06/CompanyTest.java,1\e\1e9349fcb1483d1a74fbf82b09697b0f51109ccd
+M
+src/epam/task06/Employee.java,1\a\1a0b553fe2364da096b5b066c45ebe23ad6e308b
+L
+src/epam/task06/Manager.java,f\6\f63bcb2064acd1f969668f58251187f26d2f025a
+a
+1src/epam/task06/test/epam/task06/ManagerTest.java,8\1\81c8818f21311fdfa2f33db3e0b79d5dd814d021
+P
+ src/epam/task06/SalesPerson.java,0\5\05bafe2b8c35a51ff567efa8fe01b3e895e69878
+e
+5src/epam/task06/test/epam/task06/SalesPersonTest.java,f\8\f8df9a2a1feb6f764ef2681a61fcd6992147140e
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+H
+src/epam/task07/task7.md,5\8\586e5ecf42459f796b3e370fad3039a3b7d6fa61
+S
+#src/epam/task07/SpecialDeposit.java,6\2\62a044eef5ad41c595fee723425eda43f9455e78
+P
+ src/epam/task07/LongDeposit.java,f\e\fe4fe7ecc5291ddeca2f9368aa2fda041e48aa6b
+L
+src/epam/task07/Deposit.java,5\9\59e059e256c668aa9c2c37440e2e41eda30d7e98
+K
+src/epam/task07/Client.java,e\b\eb2d0a90976a4ccf3f5fddc928eafd86be6bf41a
+e
+5src/epam/task07/test/epam/task07/BaseDepositTest.java,3\1\31fe6e2d98c989562897019d812e6d35ab9ec3ae
+e
+5src/epam/task07/test/epam/task07/LongDepositTest.java,c\5\c5902632e798d75c2e82451a59e29e234306045b
+h
+8src/epam/task07/test/epam/task07/SpecialDepositTest.java,1\4\14a299a6342143ced909ce83ce860cff9712cef7
+`
+0src/epam/task07/test/epam/task07/ClientTest.java,a\b\ab8988dcdc4cbb9ecb84caab6cd999e534d6b2cf
+P
+ src/epam/task07/BaseDeposit.java,2\2\22656988db86f6ff2023ebd27d1a13c884d18a3a
