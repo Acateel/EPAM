@@ -40,8 +40,6 @@ T
 $src/epam/task05/ArrayRectangles.java,7\e\7e223bc62d167c41b4fbc64ccc9253c9cd726951
 N
 src/epam/task05/Rectangle.java,a\8\a88de39045816892ce603c8740f4b17b7e1b2238
-i
-9src/epam/task05/test/epam/task05/ArrayRectanglesTest.java,c\5\c5989163ffc6007c7a4e16373a8e9b70da42bd64
 c
 3src/epam/task05/test/epam/task05/RectangleTest.java,0\e\0e2adce999e71424a781149d320a40ea5996dab0
 L
@@ -82,3 +80,21 @@ h
 0src/epam/task07/test/epam/task07/ClientTest.java,a\b\ab8988dcdc4cbb9ecb84caab6cd999e534d6b2cf
 P
  src/epam/task07/BaseDeposit.java,2\2\22656988db86f6ff2023ebd27d1a13c884d18a3a
+h
+8src/epam/task08/test/epam/task08/FrequencyWordsTest.java,7\b\7b3fdf91d93c0a78e83d6c23dbb57f0ac2f0c707
+P
+ src/epam/task08/LengthWords.java,8\4\84e0c1698a6aaa8a3072d50b8f5284f313de6a95
+^
+.src/epam/task08/test/epam/task08/testinput.txt,c\a\cab6bd08c2b846662330ff58d70e979237553c61
+n
+>src/epam/task08/test/epam/task08/FileToWordsConverterTest.java,3\e\3e550cbe7cc18f82613d0c402785ff3b414a2471
+S
+#src/epam/task08/FrequencyWords.java,4\7\471dadbee2cf08eaf9b179c73b31c434f557b300
+Y
+)src/epam/task08/FileToWordsConverter.java,6\a\6a0c4109d7628b41c8cc5f214e52d5928e427f2b
+e
+5src/epam/task08/test/epam/task08/LengthWordsTest.java,6\1\6165b11c9017c99b3731013a2b5fbcb147672ee7
+i
+9src/epam/task08/test/epam/task08/DuplicatesWordsTest.java,1\0\10a7098bacc0edecec22f61dc7f3d4d3b44c7a39
+T
+$src/epam/task08/DuplicatesWords.java,3\2\32434df44c0411f0ef7c2ab1b2b661bf7a5787b2
