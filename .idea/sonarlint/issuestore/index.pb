@@ -118,3 +118,13 @@ K
 0src/epam/task09/test/epam/task09/MatrixTest.java,c\9\c9bd4e54bb3a34c5112de58ba563b01db25c63e0
 T
 $src/epam/task09/MatrixException.java,3\c\3c42f6839e2131e0c6b128bab2f16d4a76a0a84c
+I
+src/epam/task10/Main.java,e\c\ec1114f3ba353393083f13a774c30399906e6f23
+S
+#src/epam/task10/UserListHelper.java,d\7\d732a8f1a24c4b180992cadf632d3a1745bd26e0
+N
+src/epam/task10/UsersList.java,6\9\696c870d00e56849cdcbf4e08d9283f24d607363
+c
+3src/epam/task10/test/epam/task10/UsersListTest.java,3\0\306672b89990210ad6ee98b55233a2b50a044455
+I
+src/epam/task10/User.java,7\1\7186666dd72b5f80d18578919f45df097e8b28dd
