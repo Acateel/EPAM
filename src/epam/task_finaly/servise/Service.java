@@ -60,6 +60,16 @@ public class Service {
         }
         return null;
     }
+    public City findCity(String identification){
+        City city;
+        for(var country : countries){
+            city = country.findCity(identification);
+            if(city != null){
+                return city;
+            }
+        }
+        return null;
+    }
 
     public boolean deleteCountry(String countryId) {
         return countries.remove(findCountry(countryId));

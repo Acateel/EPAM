@@ -116,4 +116,36 @@ class ServiceTest {
         service.saveDataBase();
         assertEquals(service.getCountries(), stubContext.read());
     }
+
+    @Test
+    void findCity(){
+        var country1 = new Country("0000", "A");
+        country1.addCity(new City("00001", null, "AA", 500_000, false));
+        country1.addCity(new City("00002", null, "AB", 500_000, false));
+        var country2 = new Country("0001", "B");
+        country2.addCity(new City("00011", null, "BA", 500_000, true));
+        country2.addCity(new City("00012", null, "BB", 500_000, false));
+        Service service = new Service();
+        service.addCountry(country1);
+        service.addCountry(country2);
+
+        var city = service.findCity("00011");
+        assertEquals("BA", city.getName());
+    }
+
+    @Test
+    void findCity_return_null(){
+        var country1 = new Country("0000", "A");
+        country1.addCity(new City("00001", null, "AA", 500_000, false));
+        country1.addCity(new City("00002", null, "AB", 500_000, false));
+        var country2 = new Country("0001", "B");
+        country2.addCity(new City("00011", null, "BA", 500_000, true));
+        country2.addCity(new City("00012", null, "BB", 500_000, false));
+        Service service = new Service();
+        service.addCountry(country1);
+        service.addCountry(country2);
+
+        var city = service.findCity("00013");
+        assertNull(city);
+    }
 }
