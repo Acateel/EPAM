@@ -1,0 +1,13 @@
+
+‚
+java:S1130
+"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø
+S	java:S106+"9Replace this use of System.out or System.err by a logger.(Ë”¤ìúÿÿÿÿ
+N	java:S106/"9Replace this use of System.out or System.err by a logger.(µÂ¨‰
+N	java:S1061"9Replace this use of System.out or System.err by a logger.(±ÇâË
+S	java:S1067"9Replace this use of System.out or System.err by a logger.(âÇ¥¯øÿÿÿÿ
+S	java:S106?"9Replace this use of System.out or System.err by a logger.(–ê¿Ôÿÿÿÿÿ
+S	java:S106C"9Replace this use of System.out or System.err by a logger.(÷ÊôÎüÿÿÿÿ
+U	java:S106E"9Replace this use of System.out or System.err by a logger.(ˆî¬§8„–ÏçÛ/
+e
+java:S1192"JDefine a constant instead of duplicating this literal "-2019.csv" 3 times.(™ª€«ÿÿÿÿÿ
