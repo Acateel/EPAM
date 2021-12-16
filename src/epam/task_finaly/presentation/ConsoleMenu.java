@@ -1,9 +1,11 @@
 package epam.task_finaly.presentation;
 
+import epam.task_finaly.servise.City;
 import epam.task_finaly.servise.Country;
 import epam.task_finaly.servise.Service;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ConsoleMenu {
@@ -158,12 +160,11 @@ public class ConsoleMenu {
             String command = new Scanner(System.in).nextLine();
             switch (command) {
                 case "1" -> showCities(country);
-                case "2" -> showError("Don't realize");
-                case "3" -> showError("Don't realize");
-                case "4" -> showError("Don't realize");
-                case "5" -> showError("Don't realize");
-                case "6" -> showError("Don't realize");
-                case "7" -> isRunning = false;
+                case "2" -> addCity(country);
+                case "3" -> deleteCity(country);
+                case "4" -> changeCityInfo(country);
+                case "5" -> showCountryInfo(country);
+                case "6" -> isRunning = false;
                 default -> showError("Command not found");
             }
         }
@@ -173,7 +174,7 @@ public class ConsoleMenu {
         System.out.println("\033[0;32m"); // Green foreground color
 
         System.out.println("1.Show Cities | 2.Add City | 3.Delete City");
-        System.out.println("4.Change City info | 5.Show country info | 6.Quit");
+        System.out.println("4.Change City info | 5.Show country info | 6.Back");
 
         System.out.println("\033[0m"); // reset foreground color
     }
@@ -190,4 +191,82 @@ public class ConsoleMenu {
                     + " Capital: " + city.isCapital());
         }
     }
+
+    private int getPopulation(boolean skip) {
+        while (true) {
+            System.out.println("Write population:");
+            String populationString = new Scanner(System.in).nextLine();
+            if (populationString.matches("[1-9]+[0-9]*")) {
+                return Integer.parseInt(populationString);
+            } else if (populationString.equals("") && skip) {
+                return 0;
+            } else {
+                showError("Population is not format");
+
+            }
+        }
+    }
+
+    private boolean getIsCapital() {
+        while (true) {
+            System.out.println("Write is Capital (y/n):");
+            String isCapital = new Scanner(System.in).nextLine();
+            if (Objects.equals(isCapital, "y")) {
+                return true;
+            } else if (Objects.equals(isCapital, "n")) {
+                return false;
+            } else {
+                showError("Capital's Factor is not format");
+
+            }
+        }
+    }
+
+    private void addCity(Country country) {
+        var identification = getIdentification();
+        if (!service.objectHaveUniqueId(identification)) {
+            showError("Identification is not unique");
+            return;
+        }
+
+        country.addCity(new City(identification, null, getName(false), getPopulation(false), getIsCapital()));
+        System.out.println("City added");
+    }
+
+    private void deleteCity(Country country) {
+        var identification = getIdentification();
+        if (country.deleteCity(identification)) {
+            System.out.println("City deleted");
+        } else {
+            System.out.println("City not deleted");
+        }
+    }
+
+    private void changeCityInfo(Country country) {
+        var city = country.findCity(getIdentification());
+        if (city == null) {
+            showError("Not found");
+            return;
+        }
+        var name = getName(true);
+        if (!name.equals("")) {
+            city.setName(name);
+        }
+        else {
+            System.out.println("Use default value");
+        }
+        var population = getPopulation(true);
+        if(population != 0){
+            city.setPopulation(population);
+        }
+        else{
+            System.out.println("Use default value");
+        }
+        city.setCapital(getIsCapital());
+    }
+
+    private void showCountryInfo(Country country){
+        System.out.println("[" + country.getIdentification() + "] " + country.getName());
+    }
+
 }
