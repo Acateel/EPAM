@@ -46,9 +46,10 @@ public class Country {
     }
 
     public boolean addCity(City city) {
-        if (cityHaveUniqueId(city.getIdentification())) {
+        if (!cityHaveUniqueId(city.getIdentification())) {
             return false;
         }
+        city.setCountry(this);
         cities.add(city);
         return true;
     }
@@ -67,7 +68,7 @@ public class Country {
     }
 
     public City findCity(String identification) {
-        for (var city : cities) {
+        for (City city : cities) {
             if (Objects.equals(city.getIdentification(), identification)) {
                 return city;
             }
