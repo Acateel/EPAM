@@ -22,6 +22,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/epam/basic/task09/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/epam/basic/task10/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/epam/basic/task_finaly/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/epam/advanced/task01/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library" exported="">
