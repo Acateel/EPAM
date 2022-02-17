@@ -1,31 +1,32 @@
-package epam.advanced.practice2.queue;
+package epam.advanced.practice2.stack;
 
 import epam.advanced.practice2.data.City;
 import epam.advanced.practice2.data.CityHelper;
+import epam.advanced.practice2.queue.QueueImpl;
 
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class QueueImpl implements Queue {
+public class StackImpl implements Stack{
     public static void main(String[] args) {
-        QueueImpl queue = new QueueImpl();
+        Stack stack = new StackImpl();
         try {
             City[] cities = (City[]) CityHelper.readToXml(CityHelper.getPathXmlFile());
             for (City city : cities) {
-                queue.enqueue(city);
+                stack.push(city);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         System.out.println("Reading finish");
-        System.out.println(queue);
+        System.out.println(stack);
 
-        System.out.println("Dequeue\n" + queue.dequeue());
-        System.out.println("Top\n" + queue.top());
-        System.out.println("Size -> " + queue.size());
+        System.out.println("Pop\n" + stack.pop());
+        System.out.println("Top\n" + stack.top());
+        System.out.println("Size -> " + stack.size());
 
-        var iterator = queue.iterator();
+        var iterator = stack.iterator();
         while(iterator.hasNext()){
             City city = (City) iterator.next();
             System.out.println(city.getName());
@@ -36,7 +37,7 @@ public class QueueImpl implements Queue {
         }
 
         try {
-            CityHelper.writeToJsonIterator(queue.iterator(), CityHelper.getPathJsonFile());
+            CityHelper.writeToJsonIterator(stack.iterator(), CityHelper.getPathJsonFile());
         }
         catch (IOException e){
             System.out.println(e.getMessage());
@@ -46,25 +47,17 @@ public class QueueImpl implements Queue {
     private Node head;
 
     @Override
-    public void enqueue(Object element) {
-        if (head == null) {
-            head = new Node(element);
-        } else {
-            Node end = head;
-            while (end.next != null) {
-                end = end.next;
-            }
-            end.next = new Node(element);
-        }
+    public void push(Object element) {
+        head = new Node(element, head);
     }
 
     @Override
-    public Object dequeue() {
-        if (head == null)
-            throw new IllegalCallerException("Queue is empty");
-        Object oldHeadData = head.data;
+    public Object pop() {
+        if(head==null)
+            throw new IllegalCallerException("Stack is empty");
+        var data = head.data;
         head = head.next;
-        return oldHeadData;
+        return data;
     }
 
     @Override
@@ -130,7 +123,7 @@ public class QueueImpl implements Queue {
         @Override
         public void remove() {
             if (node.data.equals(head.data)) {
-                QueueImpl.this.dequeue();
+                StackImpl.this.pop();
             }
             Node cur = head;
             while (cur.next != null) {

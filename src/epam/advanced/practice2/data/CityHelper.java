@@ -14,7 +14,7 @@ public class CityHelper {
         return "src/epam/advanced/practice2/resourses/Array.xml";
     }
     public static String getPathJsonFile(){
-        return "src/epam/advanced/practice2/resourses/StructureData.xml";
+        return "src/epam/advanced/practice2/resourses/StructureData.json";
     }
 
     public static void main(String[] args) throws IOException {
