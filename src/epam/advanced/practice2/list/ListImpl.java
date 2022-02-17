@@ -65,6 +65,12 @@ public class ListImpl implements List {
             }
         }
         System.out.println(list);
+        try {
+            CityHelper.writeToJsonIterator(list.iterator(), CityHelper.getPathJsonFile());
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private Node head;

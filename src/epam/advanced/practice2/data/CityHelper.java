@@ -4,6 +4,7 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -48,10 +49,12 @@ public class CityHelper {
             return in.readObject();
         }
     }
-    public static void writeToJson(Object object, String path) throws IOException{
+    public static void writeToJsonIterator(Iterator<Object> iterator, String path) throws IOException{
         try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(path))){
             ObjectMapper mapper = new ObjectMapper();
-            out.writeObject(mapper.writeValueAsString(object));
+            while (iterator.hasNext()) {
+                out.writeObject(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(iterator.next()));
+            }
         }
     }
 }
