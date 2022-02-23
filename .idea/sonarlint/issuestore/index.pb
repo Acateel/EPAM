@@ -74,5 +74,15 @@ _
 /src/epam/basic/task08/FileToWordsConverter.java,8\c\8c2b6b2d2c3f1693d9dfb08f5656149b666ec877
 b
 2src/epam/basic/task_finaly/context/XMLContext.java,1\4\1453daa0f89224c8fe6cd6eebae77a764acc5c30
+Z
+*src/epam/advanced/practice2/data/City.java,b\d\bdd6db511a7d7bcae86653e9de20043d4c1f85e7
 ]
--src/epam/advanced/task01/path2/Container.java,4\6\46e3c39cd19785d4544a52172160a3608b6e8876
+-src/epam/advanced/task01/path2/ArrayImpl.java,e\1\e113f44e73a235b46f1c1f0bd316f0036d433ade
+Z
+*src/epam/advanced/practice2/list/List.java,8\5\850671d8bb9421a1f2940b5ae63838ee4621ee3c
+`
+0src/epam/advanced/practice2/queue/QueueImpl.java,7\c\7ca57e299f238e48d4b7d187d4520b4a0f2c7399
+`
+0src/epam/advanced/practice2/data/CityHelper.java,1\d\1d80cf4405d9110d5bb21b122cb4f84c3383e56c
+\
+,src/epam/advanced/practice2/queue/Queue.java,2\c\2cc795f13a8ea2c115d654aa519b2c3adef06c98
