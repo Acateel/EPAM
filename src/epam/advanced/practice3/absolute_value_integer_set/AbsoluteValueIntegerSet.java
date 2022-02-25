@@ -1,8 +1,5 @@
 package epam.advanced.practice3.absolute_value_integer_set;
 
-import epam.advanced.practice2.list.ListImpl;
-import epam.advanced.practice3.special_collections.SpecialCollections;
-
 import java.util.*;
 
 public class AbsoluteValueIntegerSet implements Set<Integer> {
@@ -169,7 +166,7 @@ public class AbsoluteValueIntegerSet implements Set<Integer> {
 
     @Override
     public void clear() {
-
+        head = null;
     }
 
     private static class Node {
