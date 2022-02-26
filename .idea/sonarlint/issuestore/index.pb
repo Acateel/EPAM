@@ -79,8 +79,6 @@ Z
 `
 0src/epam/advanced/practice2/data/CityHelper.java,1\d\1d80cf4405d9110d5bb21b122cb4f84c3383e56c
 \
-,src/epam/advanced/practice2/queue/Queue.java,2\c\2cc795f13a8ea2c115d654aa519b2c3adef06c98
-\
 ,src/epam/advanced/practice2/stack/Stack.java,b\f\bfe4a233b459afcd8546f81b877208f5930fc92c
 `
 0src/epam/advanced/practice2/stack/StackImpl.java,e\8\e8bddb9c56a8009d08d15657efb9918e0726c894
@@ -90,5 +88,9 @@ _
 /src/epam/advanced/practice3/set/IntegerSet.java,5\c\5ce410d8b994d04a0177df45e8cbfc4a0761d888
 h
 8src/epam/advanced/practice3/set/RangedOpsIntegerSet.java,8\1\81ff1d822a8c33007d3d4d7bc83eca53a5d5c718
-`
-0src/epam/advanced/practice2/queue/QueueImpl.java,7\c\7ca57e299f238e48d4b7d187d4520b4a0f2c7399
+]
+-src/epam/advanced/task01/path2/ArrayImpl.java,e\1\e113f44e73a235b46f1c1f0bd316f0036d433ade
+Z
+*src/epam/advanced/practice2/list/List.java,8\5\850671d8bb9421a1f2940b5ae63838ee4621ee3c
+g
+7src/epam/advanced/practice3/map/IntStringCappedMap.java,9\d\9df56da1f2f67773428c05b9c80273a9594edd2c
