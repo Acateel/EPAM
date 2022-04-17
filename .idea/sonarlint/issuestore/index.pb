@@ -94,3 +94,17 @@ Z
 *src/epam/advanced/practice2/list/List.java,8\5\850671d8bb9421a1f2940b5ae63838ee4621ee3c
 g
 7src/epam/advanced/practice3/map/IntStringCappedMap.java,9\d\9df56da1f2f67773428c05b9c80273a9594edd2c
+\
+,src/epam/advanced/practice2/queue/Queue.java,2\c\2cc795f13a8ea2c115d654aa519b2c3adef06c98
+`
+0src/epam/advanced/practice2/queue/QueueImpl.java,7\c\7ca57e299f238e48d4b7d187d4520b4a0f2c7399
+w
+Gsrc/epam/advanced/practice3/special_collections/SpecialCollections.java,b\1\b19ea549931c81265a5522461dccf1157e35aa0d
+ƒ
+Ssrc/epam/advanced/practice3/absolute_value_integer_set/AbsoluteValueIntegerSet.java,c\6\c6740c8e0050ffc1471a347da4e8fbc34870831f
+^
+.src/epam/advanced/practice2/list/ListImpl.java,e\9\e97a58acee924830d150e1a7d37c73ddea2d4cb6
+i
+9src/epam/advanced/practice3/median_queue/MedianQueue.java,3\8\38db0a6b736455f6d9491eb12ed2b5afbb5ed112
+O
+src/epam/basic/task10/task10.md,5\2\524caebf0bb9aac6940e770628e65a0c96a7e347
