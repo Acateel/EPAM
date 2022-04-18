@@ -22,7 +22,7 @@ public class Part2 {
     }
     private static class MyInputStream extends InputStream{
         boolean firstStart = true;
-        byte[] enter = "\n".getBytes(StandardCharsets.UTF_8);
+        int enter = "\n".getBytes(StandardCharsets.UTF_8)[0];
         int index = -1;
         @Override
         public int read() throws IOException {
@@ -33,7 +33,7 @@ public class Part2 {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                return 10; // \n in utf-8
+                return enter; // \n in utf-8
             }
             return -1;
         }
