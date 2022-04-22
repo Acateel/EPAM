@@ -1,6 +1,6 @@
 package epam.advanced.practice2.queue;
 
-import epam.advanced.task01.path2.Container;
+import epam.advanced.practice1.path2.Container;
 
 public interface Queue extends Container {
 
