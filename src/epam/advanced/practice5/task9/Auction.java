@@ -3,7 +3,6 @@ package epam.advanced.practice5.task9;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 public class Auction {
     private List<Lot> lots;
@@ -50,15 +49,19 @@ public class Auction {
     public Participant findWinner() throws InterruptedException {
         Participant winner = findProbablyWinner();
         withdrawFineCounters();
-        System.out.println("Winner Id = " + winner.getParticipantId() + ", Cash = " + winner.getCash() + ", Price = " + winner.getCurrentLotPrice());
+        System.out.println("\nWinner Id = " + winner.getParticipantId() + ", Cash = " + winner.getCash() + ", Price = " + winner.getCurrentLotPrice());
         if (!distractPrice(winner)) {
             System.out.println("Winner can't pay");
             winner = null;
         }
         lots.remove(0);
+        finish();
+        return winner;
+    }
+
+    private void finish() {
         finishLatch.countDown();
         finishLatch = new CountDownLatch(1);
-        return winner;
     }
 
     private void withdrawFineCounters() {

@@ -70,27 +70,45 @@ public class Participant extends Thread {
     public void run() {
         try {
             while (auction.hasLots()) {
-                startLatch = auction.getStartLatch();
-                startLatch.await();
+                waitStart();
                 if (access) {
-                    currentLotPrice = auction.getLot().getStartPrice();
-                    Random random = new Random();
-                    addCurrentLotPrice(random.nextInt(20));
+                    currentLotPrice = getCurrentPrice();
                     System.out.println(participantId + " -> " + currentLotPrice);
-                    if (random.nextInt(3) == 0) {
-                        addCurrentLotPrice(random.nextInt(20));
-                        System.out.println("Update:" + participantId + " -> " + currentLotPrice);
-                    }
+                    addedPrice();
                 } else {
                     currentLotPrice = 0;
                 }
-                finishLatch = auction.getFinishLatch();
-                finishLatch.await();
+                waitFinish();
                 System.out.println(this);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addedPrice() {
+        Random random = new Random();
+        if (random.nextInt(3) == 0) {
+            addCurrentLotPrice(random.nextInt(20));
+            System.out.println("Update:" + participantId + " -> " + currentLotPrice);
+        }
+    }
+
+    private int getCurrentPrice() {
+        int price = auction.getLot().getStartPrice();
+        Random random = new Random();
+        addCurrentLotPrice(random.nextInt(20));
+        return price;
+    }
+
+    public void waitFinish() throws InterruptedException {
+        finishLatch = auction.getFinishLatch();
+        finishLatch.await();
+    }
+
+    public void waitStart() throws InterruptedException {
+        startLatch = auction.getStartLatch();
+        startLatch.await();
     }
 
     public boolean withdrawMoney() {
