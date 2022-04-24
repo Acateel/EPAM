@@ -92,3 +92,11 @@ V
 &src/epam/advanced/practice4/Part2.java,7\a\7a6af4277c9189247ef425c9c0ed0dcdca68d769
 V
 &src/epam/advanced/practice4/Part3.java,d\b\db332345164d733a794c61181ed1cd2152709a4e
+[
++src/epam/advanced/practice5/task9/Main.java,0\f\0f61bc3e7f5e8512b7b725fa0f276900e4789ecc
+Z
+*src/epam/advanced/practice5/task9/Lot.java,0\b\0b245086b8be92c986aa9a482aa94b383be7b8d0
+b
+2src/epam/advanced/practice5/task9/Participant.java,6\e\6ea59cfd9f509602b7fc789d6520147f505506c6
+^
+.src/epam/advanced/practice5/task9/Auction.java,1\c\1c9809cdd3b6379c12725683f555ed658a4c4b67

@@ -1,0 +1,11 @@
+
+p
+java:S1450"ZRemove the "finishLatch" field and declare it as a local variable in the relevant methods.(ƒ…¡Í
+t
+java:S1450"YRemove the "startLatch" field and declare it as a local variable in the relevant methods.(ò™©òûÿÿÿÿ
+t
+java:S2142T"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+3
+java:S2119Z"Save and re-use this "Random".(¼ÝÅf
+:
+java:S2119c"Save and re-use this "Random".(¼ÝÅf8¸Õ¡•…0
