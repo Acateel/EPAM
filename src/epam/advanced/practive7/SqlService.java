@@ -3,6 +3,8 @@ package epam.advanced.practive7;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class SqlService {
     Statement statement;
@@ -106,5 +108,12 @@ public class SqlService {
             oldLastName = lastName;
             oldYear = year;
         }
+    }
+
+    public void deleteOldFilm(int number) throws SQLException {
+        int year = 2022 - number;
+        statement.execute("delete\n" +
+                "from film\n" +
+                "where film.release_year<=" + year);
     }
 }
