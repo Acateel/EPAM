@@ -7,6 +7,7 @@ public class Main {
         SqlService service = new SqlService(CreateConnection.createStatement());
         //service.showFilmYear(2022);
         //service.showActorsInFilm("Iron Man");
-        service.showActorsWithCount(2);
+        //service.showActorsWithCount(2);
+        service.showProducerActor();
     }
 }
