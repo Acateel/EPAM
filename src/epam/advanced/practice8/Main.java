@@ -25,7 +25,7 @@ public class Main {
         film.setReleaseYear(2021);
         film.setReleaseCounty("USA");
 
-        deleteFilmWithId(12);
+        
 
         showAllFilms();
     }

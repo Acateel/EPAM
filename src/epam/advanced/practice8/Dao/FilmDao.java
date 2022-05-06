@@ -69,29 +69,6 @@ public class FilmDao extends BaseDao<Film> {
         return film;
     }
 
-    public int findIdByEntity(Film entity) throws DaoException {
-        int id = 0;
-        Connection connection = null;
-        PreparedStatement statement = null;
-        try{
-            connection = connectionPool.getConnection();
-            statement = connection.prepareStatement(SQL_SELECT_ID_FILM);
-            statement.setString(1, entity.getTitle());
-            statement.setInt(2, entity.getReleaseYear());
-            statement.setString(3, entity.getReleaseCounty());
-            var resultSet = statement.executeQuery();
-            resultSet.next();
-            id = resultSet.getInt(1);
-        } catch (SQLException throwables) {
-            throw new DaoException(throwables.getMessage());
-        }
-        finally {
-            close(statement);
-            close(connection);
-        }
-        return id;
-    }
-
     @Override
     public boolean delete(Film entity) throws DaoException {
         int undate = 0;
