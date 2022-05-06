@@ -3,17 +3,15 @@ package epam.advanced.practice8.Dao;
 import epam.advanced.practice8.ConnectionPool.BasicConnectionPool;
 import epam.advanced.practice8.Entities.Film;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FilmDao extends BaseDao<Film> {
     private static final String SQL_SELECT_ALL_FILMS =
             "select * from film";
-
+    private static final String SQL_SELECT_FILM =
+            "select * from film where film_id=?";
 
     public FilmDao(BasicConnectionPool connectionPool) {
         super(connectionPool);
@@ -43,7 +41,24 @@ public class FilmDao extends BaseDao<Film> {
 
     @Override
     public Film findEntityById(int id) throws DaoException {
-        return null;
+        Film film = null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_SELECT_FILM);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            film = parseResultSet(resultSet);
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return film;
     }
 
     @Override

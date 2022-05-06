@@ -16,6 +16,11 @@ public class Main {
                 "jdbc:mysql://localhost:3306/video_library", "root", "pass"
         );
         FilmDao filmDao = new FilmDao(connectionPool);
+        var film = filmDao.findEntityById(5);
+        System.out.println(film);
+    }
+
+    private static void showAllFilms(FilmDao filmDao) throws DaoException {
         var films = filmDao.findAll();
         for(var film : films){
             System.out.println(film);
