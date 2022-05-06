@@ -12,6 +12,8 @@ public class FilmDao extends BaseDao<Film> {
             "select * from film";
     private static final String SQL_SELECT_FILM =
             "select * from film where film_id=?";
+    private static final String SQL_INSERT_FILM =
+            "insert into film (title, release_year, release_country) values (?, ?, ?);";
 
     public FilmDao(BasicConnectionPool connectionPool) {
         super(connectionPool);
@@ -73,7 +75,24 @@ public class FilmDao extends BaseDao<Film> {
 
     @Override
     public boolean create(Film entity) throws DaoException {
-        return false;
+        int undate = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_INSERT_FILM);
+            statement.setString(1, entity.getTitle());
+            statement.setInt(2, entity.getReleaseYear());
+            statement.setString(3, entity.getReleaseCounty());
+            undate = statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return undate > 0;
     }
 
     private Film parseResultSet(ResultSet resultSet){
