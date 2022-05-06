@@ -19,6 +19,9 @@ public class ActorDao extends BaseDao<Actor> {
             "delete from actor where first_name=? and last_name=? and birdsyear=?;";
     private static final String SQL_DELETE_ENTITY_WITH_ID =
             "delete from actor where actor_id=?";
+    private static final String SQL_SELECT_ACTOR_IN_FILM =
+            "select actor.* from actor left join film_actor on film_actor.actor_id=actor.actor_id " +
+                    "left join film on film.film_id=film_actor.film_id where title=?;";
 
     public ActorDao(BasicConnectionPool connectionPool) {
         super(connectionPool);
@@ -29,17 +32,16 @@ public class ActorDao extends BaseDao<Actor> {
         List<Actor> actors = new ArrayList<>();
         Connection connection = null;
         Statement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_ACTORS);
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 actors.add(parseResultSet(resultSet));
             }
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
@@ -51,7 +53,7 @@ public class ActorDao extends BaseDao<Actor> {
         Actor actor = null;
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.prepareStatement(SQL_SELECT_ACTOR);
             statement.setInt(1, id);
@@ -60,8 +62,7 @@ public class ActorDao extends BaseDao<Actor> {
             actor = parseResultSet(resultSet);
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
@@ -73,7 +74,7 @@ public class ActorDao extends BaseDao<Actor> {
         int undate = 0;
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.prepareStatement(SQL_DELETE_ENTITY);
             statement.setString(1, entity.getFirstName());
@@ -82,8 +83,7 @@ public class ActorDao extends BaseDao<Actor> {
             undate = statement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
@@ -95,15 +95,14 @@ public class ActorDao extends BaseDao<Actor> {
         int undate = 0;
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.prepareStatement(SQL_DELETE_ENTITY_WITH_ID);
             statement.setInt(1, id);
             undate = statement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
@@ -115,7 +114,7 @@ public class ActorDao extends BaseDao<Actor> {
         int undate = 0;
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.prepareStatement(SQL_INSERT_FILM);
             statement.setString(1, entity.getFirstName());
@@ -124,15 +123,35 @@ public class ActorDao extends BaseDao<Actor> {
             undate = statement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
         return undate > 0;
     }
 
-    private Actor parseResultSet(ResultSet resultSet){
+    public List<Actor> findActorsInFilm(Film film) throws DaoException {
+        List<Actor> actors = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_SELECT_ACTOR_IN_FILM);
+            statement.setString(1, film.getTitle());
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                actors.add(parseResultSet(resultSet));
+            }
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        } finally {
+            close(statement);
+            close(connection);
+        }
+        return actors;
+    }
+
+    private Actor parseResultSet(ResultSet resultSet) {
         Actor film = new Actor();
         try {
             film.setId(resultSet.getInt(1));

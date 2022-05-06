@@ -19,9 +19,19 @@ public class Main {
         filmDao = new FilmDao(connectionPool);
         actorDao = new ActorDao(connectionPool);
 
-        
+        var film = filmDao.findEntityById(2);
+        var actors = actorDao.findActorsInFilm(film);
+        for(var actor : actors){
+            System.out.println(actor);
+        }
 
+    }
 
+    private static void showActorsInFilm(Film film) throws DaoException {
+        var actors = actorDao.findActorsInFilm(film);
+        for(var actor : actors){
+            System.out.println(actor);
+        }
     }
 
     private static void showFilmsCurrentYear() throws DaoException {
