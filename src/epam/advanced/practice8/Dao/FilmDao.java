@@ -6,6 +6,7 @@ import epam.advanced.practice8.Entities.Film;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class FilmDao extends BaseDao<Film> {
@@ -27,6 +28,8 @@ public class FilmDao extends BaseDao<Film> {
             "insert into film_actor (film_id, actor_id) values (?, ?)";
     private static final String SQL_INSERT_FILM_PRODUCER =
             "insert into film_producer (film_id, actor_id) values (?, ?)";
+    private static final String SQL_SELECT_FILM_WITH_YEAR =
+            "select * from film where release_year>=?";
 
     public FilmDao(BasicConnectionPool connectionPool) {
         super(connectionPool);
@@ -212,6 +215,28 @@ public class FilmDao extends BaseDao<Film> {
             close(connection);
         }
         return undate > 0;
+    }
+
+    public List<Film> findFilmsInThisYear() throws DaoException {
+        List<Film> films = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_SELECT_FILM_WITH_YEAR);
+            statement.setInt(1, Calendar.getInstance().get(Calendar.YEAR)-1);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                films.add(parseResultSet(resultSet));
+            }
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return films;
     }
 
     private Film parseResultSet(ResultSet resultSet){

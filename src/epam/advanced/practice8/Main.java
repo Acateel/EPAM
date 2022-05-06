@@ -19,21 +19,16 @@ public class Main {
         filmDao = new FilmDao(connectionPool);
         actorDao = new ActorDao(connectionPool);
 
-        Actor actor = new Actor();
-        actor.setFirstName("Tom");
-        actor.setLastName("Holland");
-        actor.setBirdsYear(1996);
-
-
-        Film film = new Film();
-        film.setTitle("Spider-man: No way home");
-        film.setReleaseYear(2021);
-        film.setReleaseCounty("USA");
-
         
 
-        showAllActors();
-        showAllFilms();
+
+    }
+
+    private static void showFilmsCurrentYear() throws DaoException {
+        var list = filmDao.findFilmsInThisYear();
+        for (var film : list) {
+            System.out.println(film);
+        }
     }
 
     private static void deleteActor(Actor actor) throws DaoException {
