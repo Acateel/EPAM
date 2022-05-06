@@ -28,4 +28,14 @@ public class Film extends Entity{
     public void setReleaseCounty(String releaseCounty) {
         this.releaseCounty = releaseCounty;
     }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "id='" + getId() + '\'' +
+                "title='" + title + '\'' +
+                ", year=" + releaseYear +
+                ", county='" + releaseCounty + '\'' +
+                '}';
+    }
 }

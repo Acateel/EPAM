@@ -18,7 +18,7 @@ public class Main {
         FilmDao filmDao = new FilmDao(connectionPool);
         var films = filmDao.findAll();
         for(var film : films){
-            System.out.println(film.getTitle());
+            System.out.println(film);
         }
     }
 }

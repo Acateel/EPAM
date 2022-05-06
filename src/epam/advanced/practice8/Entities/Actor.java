@@ -28,4 +28,14 @@ public class Actor extends Entity {
     public void setBirdsYear(int birdsYear) {
         this.birdsYear = birdsYear;
     }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "id='" + getId() + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", Year=" + birdsYear +
+                '}';
+    }
 }
