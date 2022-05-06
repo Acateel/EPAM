@@ -8,6 +8,7 @@ import epam.advanced.practice8.Entities.Actor;
 import epam.advanced.practice8.Entities.Film;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
     private static FilmDao filmDao;
@@ -19,12 +20,15 @@ public class Main {
         filmDao = new FilmDao(connectionPool);
         actorDao = new ActorDao(connectionPool);
 
-        var film = filmDao.findEntityById(2);
-        var actors = actorDao.findActorsInFilm(film);
+        showActorsInFilmManyTimes(2);
+
+    }
+
+    private static void showActorsInFilmManyTimes(int times) throws DaoException {
+        var actors = actorDao.findActorsInFilmManyTimes(times);
         for(var actor : actors){
             System.out.println(actor);
         }
-
     }
 
     private static void showActorsInFilm(Film film) throws DaoException {
