@@ -20,8 +20,15 @@ public class Main {
         filmDao = new FilmDao(connectionPool);
         actorDao = new ActorDao(connectionPool);
 
-        showActorsInFilmManyTimes(2);
+        showProducer();
 
+    }
+
+    private static void showProducer() throws DaoException {
+        var actors = actorDao.findActorsProducer();
+        for(var actor : actors){
+            System.out.println(actor);
+        }
     }
 
     private static void showActorsInFilmManyTimes(int times) throws DaoException {

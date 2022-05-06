@@ -24,6 +24,9 @@ public class ActorDao extends BaseDao<Actor> {
                     "left join film on film.film_id=film_actor.film_id where title=?;";
     private static final String SQL_SELECT_ACTORS_IN_FILM_MANY_TIMES =
             "select actor.* from actor left join film_actor on film_actor.actor_id=actor.actor_id where film_id > 0";
+    private static final String SQL_SELECT_PRODUCERS =
+            "select actor.actor_id, actor.first_name, actor.last_name, actor.birdsyear from actor " +
+                    "left join film_producer on film_producer.actor_id=actor.actor_id where film_id > 0";
 
     public ActorDao(BasicConnectionPool connectionPool) {
         super(connectionPool);
@@ -173,6 +176,31 @@ public class ActorDao extends BaseDao<Actor> {
 
         return getActorsManyTimes(times, actors);
     }
+
+    public List<Actor> findActorsProducer() throws DaoException {
+        List<Actor> actors = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = connectionPool.getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_PRODUCERS);
+            while (resultSet.next()) {
+                var actor = parseResultSet(resultSet);
+                if(!actors.contains(actor)) {
+                    actors.add(actor);
+                }
+            }
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        } finally {
+            close(statement);
+            close(connection);
+        }
+        return actors;
+    }
+
+
 
     private List<Actor> getActorsManyTimes(int times, List<Actor> actors) {
         List<Actor> actorsManyTimes = new ArrayList<>();
