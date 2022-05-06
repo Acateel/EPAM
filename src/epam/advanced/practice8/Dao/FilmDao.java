@@ -12,8 +12,6 @@ public class FilmDao extends BaseDao<Film> {
             "select * from film";
     private static final String SQL_SELECT_FILM =
             "select * from film where film_id=?";
-    private static final String SQL_SELECT_ID_FILM =
-            "select * from film where title=? and release_year=? and release_country=?;";
     private static final String SQL_INSERT_FILM =
             "insert into film (title, release_year, release_country) values (?, ?, ?);";
     private static final String SQL_DELETE_ENTITY =
