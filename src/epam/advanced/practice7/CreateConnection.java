@@ -1,4 +1,4 @@
-package epam.advanced.practive7;
+package epam.advanced.practice7;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

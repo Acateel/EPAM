@@ -1,10 +1,8 @@
-package epam.advanced.practive7;
+package epam.advanced.practice7;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class SqlService {
     Statement statement;
