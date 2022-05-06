@@ -5,6 +5,7 @@ import epam.advanced.practice8.ConnectionPool.ConnectionPool;
 import epam.advanced.practice8.Dao.ActorDao;
 import epam.advanced.practice8.Dao.DaoException;
 import epam.advanced.practice8.Dao.FilmDao;
+import epam.advanced.practice8.Entities.Actor;
 import epam.advanced.practice8.Entities.Film;
 
 import java.sql.Connection;
@@ -23,9 +24,37 @@ public class Main {
         filmDao = new FilmDao(connectionPool);
         actorDao = new ActorDao(connectionPool);
 
+        Actor actor = new Actor();
+        actor.setFirstName("Tobias");
+        actor.setLastName("Maguire");
+        actor.setBirdsYear(1989);
 
+        deleteActor(actor);
 
         showAllActors();
+    }
+
+    private static void deleteActor(Actor actor) throws DaoException {
+        boolean deleted = actorDao.delete(actor);
+        System.out.println(actor);
+        System.out.println(deleted ? "Deleted" : "Did not delete");
+    }
+
+    private static void deleteActorWithId(int id) throws DaoException {
+        boolean deleted = actorDao.delete(id);
+        System.out.println("Id = " + id);
+        System.out.println(deleted ? "Deleted" : "Did not delete");
+    }
+
+    private static void addActor(Actor actor) throws DaoException {
+        boolean added = actorDao.create(actor);
+        System.out.println(actor);
+        System.out.println(added ? "Added" : "Did not add");
+    }
+
+    private static void showActorWithId(int id) throws DaoException {
+        var actor = actorDao.findEntityById(id);
+        System.out.println(actor);
     }
 
     private static void showAllActors() throws DaoException {

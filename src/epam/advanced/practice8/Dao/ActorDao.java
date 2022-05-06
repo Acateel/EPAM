@@ -4,24 +4,21 @@ import epam.advanced.practice8.ConnectionPool.BasicConnectionPool;
 import epam.advanced.practice8.Entities.Actor;
 import epam.advanced.practice8.Entities.Film;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActorDao extends BaseDao<Actor> {
     private static final String SQL_SELECT_ALL_ACTORS =
             "select * from actor";
-    private static final String SQL_SELECT_FILM =
-            "select * from film where film_id=?";
+    private static final String SQL_SELECT_ACTOR =
+            "select * from actor where actor_id=?";
     private static final String SQL_INSERT_FILM =
-            "insert into film (title, release_year, release_country) values (?, ?, ?);";
+            "insert into actor (first_name, last_name, birdsyear) values (?, ?, ?);";
     private static final String SQL_DELETE_ENTITY =
-            "delete from film where title=? and release_year=? and release_country=?;";
+            "delete from actor where first_name=? and last_name=? and birdsyear=?;";
     private static final String SQL_DELETE_ENTITY_WITH_ID =
-            "delete from film where film_id=?";
+            "delete from actor where actor_id=?";
 
     public ActorDao(BasicConnectionPool connectionPool) {
         super(connectionPool);
@@ -51,22 +48,88 @@ public class ActorDao extends BaseDao<Actor> {
 
     @Override
     public Actor findEntityById(int id) throws DaoException {
-        return null;
+        Actor actor = null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_SELECT_ACTOR);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            actor = parseResultSet(resultSet);
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return actor;
     }
 
     @Override
     public boolean delete(Actor entity) throws DaoException {
-        return false;
+        int undate = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_DELETE_ENTITY);
+            statement.setString(1, entity.getFirstName());
+            statement.setString(2, entity.getLastName());
+            statement.setInt(3, entity.getBirdsYear());
+            undate = statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return undate > 0;
     }
 
     @Override
     public boolean delete(int id) throws DaoException {
-        return false;
+        int undate = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_DELETE_ENTITY_WITH_ID);
+            statement.setInt(1, id);
+            undate = statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return undate > 0;
     }
 
     @Override
     public boolean create(Actor entity) throws DaoException {
-        return false;
+        int undate = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_INSERT_FILM);
+            statement.setString(1, entity.getFirstName());
+            statement.setString(2, entity.getLastName());
+            statement.setInt(3, entity.getBirdsYear());
+            undate = statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return undate > 0;
     }
 
     private Actor parseResultSet(ResultSet resultSet){
