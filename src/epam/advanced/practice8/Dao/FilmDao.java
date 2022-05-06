@@ -30,6 +30,10 @@ public class FilmDao extends BaseDao<Film> {
             "insert into film_producer (film_id, actor_id) values (?, ?)";
     private static final String SQL_SELECT_FILM_WITH_YEAR =
             "select * from film where release_year>=?";
+    private static final String SQL_SELECT_OLD_FILM =
+            "select * from film where film.release_year<=?";
+    private static final String SQL_DELETE_OLD_FILM =
+            "delete from film where film.release_year<=?";
 
     public FilmDao(BasicConnectionPool connectionPool) {
         super(connectionPool);
@@ -250,5 +254,30 @@ public class FilmDao extends BaseDao<Film> {
             // log
         }
         return film;
+    }
+
+    public List<Film> deleteOldFilm(int years) throws DaoException {
+        List<Film> films = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_SELECT_OLD_FILM);
+            statement.setInt(1, Calendar.getInstance().get(Calendar.YEAR)-years);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                films.add(parseResultSet(resultSet));
+            }
+            statement = connection.prepareStatement(SQL_DELETE_OLD_FILM);
+            statement.setInt(1, Calendar.getInstance().get(Calendar.YEAR)-years);
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return films;
     }
 }

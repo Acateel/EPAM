@@ -19,9 +19,16 @@ public class Main {
         );
         filmDao = new FilmDao(connectionPool);
         actorDao = new ActorDao(connectionPool);
+        
+        showAllFilms();
+    }
 
-        showProducer();
-
+    private static void deleteOldFilm(int years) throws DaoException {
+        var films = filmDao.deleteOldFilm(22);
+        System.out.println("Deleted films");
+        for (var film : films) {
+            System.out.println(film);
+        }
     }
 
     private static void showProducer() throws DaoException {
