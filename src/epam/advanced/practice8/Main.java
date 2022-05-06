@@ -1,18 +1,13 @@
 package epam.advanced.practice8;
 
 import epam.advanced.practice8.ConnectionPool.BasicConnectionPool;
-import epam.advanced.practice8.ConnectionPool.ConnectionPool;
 import epam.advanced.practice8.Dao.ActorDao;
 import epam.advanced.practice8.Dao.DaoException;
 import epam.advanced.practice8.Dao.FilmDao;
 import epam.advanced.practice8.Entities.Actor;
 import epam.advanced.practice8.Entities.Film;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Logger;
 
 public class Main {
     private static FilmDao filmDao;
@@ -25,13 +20,20 @@ public class Main {
         actorDao = new ActorDao(connectionPool);
 
         Actor actor = new Actor();
-        actor.setFirstName("Tobias");
-        actor.setLastName("Maguire");
-        actor.setBirdsYear(1989);
+        actor.setFirstName("Tom");
+        actor.setLastName("Holland");
+        actor.setBirdsYear(1996);
 
-        deleteActor(actor);
+
+        Film film = new Film();
+        film.setTitle("Spider-man: No way home");
+        film.setReleaseYear(2021);
+        film.setReleaseCounty("USA");
+
+        
 
         showAllActors();
+        showAllFilms();
     }
 
     private static void deleteActor(Actor actor) throws DaoException {

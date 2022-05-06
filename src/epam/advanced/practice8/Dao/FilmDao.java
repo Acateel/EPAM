@@ -1,6 +1,7 @@
 package epam.advanced.practice8.Dao;
 
 import epam.advanced.practice8.ConnectionPool.BasicConnectionPool;
+import epam.advanced.practice8.Entities.Actor;
 import epam.advanced.practice8.Entities.Film;
 
 import java.sql.*;
@@ -18,6 +19,14 @@ public class FilmDao extends BaseDao<Film> {
             "delete from film where title=? and release_year=? and release_country=?;";
     private static final String SQL_DELETE_ENTITY_WITH_ID =
             "delete from film where film_id=?";
+    private static final String SQL_FIND_FILM_ID =
+            "select * from film where title=? and release_year=? and release_country=?;";
+    private static final String SQL_FIND_ACTOR_ID =
+            "select * from actor where first_name=? and last_name=? and birdsyear=?;";
+    private static final String SQL_INSERT_FILM_ACTOR =
+            "insert into film_actor (film_id, actor_id) values (?, ?)";
+    private static final String SQL_INSERT_FILM_PRODUCER =
+            "insert into film_producer (film_id, actor_id) values (?, ?)";
 
     public FilmDao(BasicConnectionPool connectionPool) {
         super(connectionPool);
@@ -120,6 +129,80 @@ public class FilmDao extends BaseDao<Film> {
             statement.setString(1, entity.getTitle());
             statement.setInt(2, entity.getReleaseYear());
             statement.setString(3, entity.getReleaseCounty());
+            undate = statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return undate > 0;
+    }
+
+    public boolean addActorToFilm(Film film, Actor actor) throws DaoException {
+        int undate = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_FIND_FILM_ID);
+            statement.setString(1, film.getTitle());
+            statement.setInt(2, film.getReleaseYear());
+            statement.setString(3, film.getReleaseCounty());
+            ResultSet filmSet = statement.executeQuery();
+            filmSet.next();
+            int filmId = filmSet.getInt(1);
+
+            statement = connection.prepareStatement(SQL_FIND_ACTOR_ID);
+            statement.setString(1, actor.getFirstName());
+            statement.setString(2, actor.getLastName());
+            statement.setInt(3, actor.getBirdsYear());
+            ResultSet actorSet = statement.executeQuery();
+            actorSet.next();
+            int actorId = actorSet.getInt(1);
+
+            statement = connection.prepareStatement(SQL_INSERT_FILM_ACTOR);
+            statement.setInt(1, filmId);
+            statement.setInt(2, actorId);
+
+            undate = statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return undate > 0;
+    }
+
+    public boolean addProducerToFilm(Film film, Actor actor) throws DaoException {
+        int undate = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_FIND_FILM_ID);
+            statement.setString(1, film.getTitle());
+            statement.setInt(2, film.getReleaseYear());
+            statement.setString(3, film.getReleaseCounty());
+            ResultSet filmSet = statement.executeQuery();
+            filmSet.next();
+            int filmId = filmSet.getInt(1);
+
+            statement = connection.prepareStatement(SQL_FIND_ACTOR_ID);
+            statement.setString(1, actor.getFirstName());
+            statement.setString(2, actor.getLastName());
+            statement.setInt(3, actor.getBirdsYear());
+            ResultSet actorSet = statement.executeQuery();
+            actorSet.next();
+            int actorId = actorSet.getInt(1);
+
+            statement = connection.prepareStatement(SQL_INSERT_FILM_PRODUCER);
+            statement.setInt(1, filmId);
+            statement.setInt(2, actorId);
+
             undate = statement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
