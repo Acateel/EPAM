@@ -20,8 +20,26 @@ public class Main {
         );
         filmDao = new FilmDao(connectionPool);
 
-        
+        Film film = new Film();
+        film.setTitle("Spider-Man: No Way Home");
+        film.setReleaseYear(2021);
+        film.setReleaseCounty("USA");
+
+        deleteFilmWithId(12);
+
         showAllFilms();
+    }
+
+    private static void deleteFilm(Film film) throws DaoException {
+        boolean deleted = filmDao.delete(film);
+        System.out.println(film);
+        System.out.println(deleted ? "Deleted" : "Did not delete");
+    }
+
+    private static void deleteFilmWithId(int id) throws DaoException {
+        boolean deleted = filmDao.delete(id);
+        System.out.println("Id = " + id);
+        System.out.println(deleted ? "Deleted" : "Did not delete");
     }
 
     private static void addFilm(Film film) throws DaoException {

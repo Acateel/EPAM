@@ -12,8 +12,14 @@ public class FilmDao extends BaseDao<Film> {
             "select * from film";
     private static final String SQL_SELECT_FILM =
             "select * from film where film_id=?";
+    private static final String SQL_SELECT_ID_FILM =
+            "select * from film where title=? and release_year=? and release_country=?;";
     private static final String SQL_INSERT_FILM =
             "insert into film (title, release_year, release_country) values (?, ?, ?);";
+    private static final String SQL_DELETE_ENTITY =
+            "delete from film where title=? and release_year=? and release_country=?;";
+    private static final String SQL_DELETE_ENTITY_WITH_ID =
+            "delete from film where film_id=?";
 
     public FilmDao(BasicConnectionPool connectionPool) {
         super(connectionPool);
@@ -63,14 +69,69 @@ public class FilmDao extends BaseDao<Film> {
         return film;
     }
 
+    public int findIdByEntity(Film entity) throws DaoException {
+        int id = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_SELECT_ID_FILM);
+            statement.setString(1, entity.getTitle());
+            statement.setInt(2, entity.getReleaseYear());
+            statement.setString(3, entity.getReleaseCounty());
+            var resultSet = statement.executeQuery();
+            resultSet.next();
+            id = resultSet.getInt(1);
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return id;
+    }
+
     @Override
     public boolean delete(Film entity) throws DaoException {
-        return false;
+        int undate = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_DELETE_ENTITY);
+            statement.setString(1, entity.getTitle());
+            statement.setInt(2, entity.getReleaseYear());
+            statement.setString(3, entity.getReleaseCounty());
+            undate = statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return undate > 0;
     }
 
     @Override
     public boolean delete(int id) throws DaoException {
-        return false;
+        int undate = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = connectionPool.getConnection();
+            statement = connection.prepareStatement(SQL_DELETE_ENTITY_WITH_ID);
+            statement.setInt(1, id);
+            undate = statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return undate > 0;
     }
 
     @Override
