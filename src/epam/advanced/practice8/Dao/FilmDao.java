@@ -44,17 +44,16 @@ public class FilmDao extends BaseDao<Film> {
         List<Film> films = new ArrayList<>();
         Connection connection = null;
         Statement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_FILMS);
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 films.add(parseResultSet(resultSet));
             }
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
@@ -66,7 +65,7 @@ public class FilmDao extends BaseDao<Film> {
         Film film = null;
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.prepareStatement(SQL_SELECT_FILM);
             statement.setInt(1, id);
@@ -75,8 +74,7 @@ public class FilmDao extends BaseDao<Film> {
             film = parseResultSet(resultSet);
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
@@ -88,7 +86,7 @@ public class FilmDao extends BaseDao<Film> {
         int undate = 0;
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.prepareStatement(SQL_DELETE_ENTITY);
             statement.setString(1, entity.getTitle());
@@ -97,8 +95,7 @@ public class FilmDao extends BaseDao<Film> {
             undate = statement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
@@ -110,15 +107,14 @@ public class FilmDao extends BaseDao<Film> {
         int undate = 0;
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.prepareStatement(SQL_DELETE_ENTITY_WITH_ID);
             statement.setInt(1, id);
             undate = statement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
@@ -130,7 +126,7 @@ public class FilmDao extends BaseDao<Film> {
         int undate = 0;
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.prepareStatement(SQL_INSERT_FILM);
             statement.setString(1, entity.getTitle());
@@ -139,36 +135,19 @@ public class FilmDao extends BaseDao<Film> {
             undate = statement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
         return undate > 0;
     }
 
-    public boolean addActorToFilm(Film film, Actor actor) throws DaoException {
+    public boolean addActorToFilm(int filmId, int actorId) throws DaoException {
         int undate = 0;
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
-            statement = connection.prepareStatement(SQL_FIND_FILM_ID);
-            statement.setString(1, film.getTitle());
-            statement.setInt(2, film.getReleaseYear());
-            statement.setString(3, film.getReleaseCounty());
-            ResultSet filmSet = statement.executeQuery();
-            filmSet.next();
-            int filmId = filmSet.getInt(1);
-
-            statement = connection.prepareStatement(SQL_FIND_ACTOR_ID);
-            statement.setString(1, actor.getFirstName());
-            statement.setString(2, actor.getLastName());
-            statement.setInt(3, actor.getBirdsYear());
-            ResultSet actorSet = statement.executeQuery();
-            actorSet.next();
-            int actorId = actorSet.getInt(1);
-
             statement = connection.prepareStatement(SQL_INSERT_FILM_ACTOR);
             statement.setInt(1, filmId);
             statement.setInt(2, actorId);
@@ -176,36 +155,19 @@ public class FilmDao extends BaseDao<Film> {
             undate = statement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
         return undate > 0;
     }
 
-    public boolean addProducerToFilm(Film film, Actor actor) throws DaoException {
+    public boolean addProducerToFilm(int filmId, int actorId) throws DaoException {
         int undate = 0;
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
-            statement = connection.prepareStatement(SQL_FIND_FILM_ID);
-            statement.setString(1, film.getTitle());
-            statement.setInt(2, film.getReleaseYear());
-            statement.setString(3, film.getReleaseCounty());
-            ResultSet filmSet = statement.executeQuery();
-            filmSet.next();
-            int filmId = filmSet.getInt(1);
-
-            statement = connection.prepareStatement(SQL_FIND_ACTOR_ID);
-            statement.setString(1, actor.getFirstName());
-            statement.setString(2, actor.getLastName());
-            statement.setInt(3, actor.getBirdsYear());
-            ResultSet actorSet = statement.executeQuery();
-            actorSet.next();
-            int actorId = actorSet.getInt(1);
-
             statement = connection.prepareStatement(SQL_INSERT_FILM_PRODUCER);
             statement.setInt(1, filmId);
             statement.setInt(2, actorId);
@@ -213,8 +175,7 @@ public class FilmDao extends BaseDao<Film> {
             undate = statement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
@@ -225,25 +186,24 @@ public class FilmDao extends BaseDao<Film> {
         List<Film> films = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.prepareStatement(SQL_SELECT_FILM_WITH_YEAR);
-            statement.setInt(1, Calendar.getInstance().get(Calendar.YEAR)-1);
+            statement.setInt(1, Calendar.getInstance().get(Calendar.YEAR) - 1);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 films.add(parseResultSet(resultSet));
             }
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }
         return films;
     }
 
-    private Film parseResultSet(ResultSet resultSet){
+    private Film parseResultSet(ResultSet resultSet) {
         Film film = new Film();
         try {
             film.setId(resultSet.getInt(1));
@@ -260,21 +220,20 @@ public class FilmDao extends BaseDao<Film> {
         List<Film> films = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
-        try{
+        try {
             connection = connectionPool.getConnection();
             statement = connection.prepareStatement(SQL_SELECT_OLD_FILM);
-            statement.setInt(1, Calendar.getInstance().get(Calendar.YEAR)-years);
+            statement.setInt(1, Calendar.getInstance().get(Calendar.YEAR) - years);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 films.add(parseResultSet(resultSet));
             }
             statement = connection.prepareStatement(SQL_DELETE_OLD_FILM);
-            statement.setInt(1, Calendar.getInstance().get(Calendar.YEAR)-years);
+            statement.setInt(1, Calendar.getInstance().get(Calendar.YEAR) - years);
             statement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
-        }
-        finally {
+        } finally {
             close(statement);
             close(connection);
         }

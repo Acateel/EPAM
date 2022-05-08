@@ -25,14 +25,6 @@ public class Main {
         mainMenu.Start();
     }
 
-    private static void deleteOldFilm(int years) throws DaoException {
-        var films = filmDao.deleteOldFilm(22);
-        System.out.println("Deleted films");
-        for (var film : films) {
-            System.out.println(film);
-        }
-    }
-
     private static void showProducer() throws DaoException {
         var actors = actorDao.findActorsProducer();
         for(var actor : actors){
@@ -51,13 +43,6 @@ public class Main {
         var actors = actorDao.findActorsInFilm(film);
         for(var actor : actors){
             System.out.println(actor);
-        }
-    }
-
-    private static void showFilmsCurrentYear() throws DaoException {
-        var list = filmDao.findFilmsInThisYear();
-        for (var film : list) {
-            System.out.println(film);
         }
     }
 
@@ -91,33 +76,5 @@ public class Main {
         }
     }
 
-    private static void deleteFilm(Film film) throws DaoException {
-        boolean deleted = filmDao.delete(film);
-        System.out.println(film);
-        System.out.println(deleted ? "Deleted" : "Did not delete");
-    }
 
-    private static void deleteFilmWithId(int id) throws DaoException {
-        boolean deleted = filmDao.delete(id);
-        System.out.println("Id = " + id);
-        System.out.println(deleted ? "Deleted" : "Did not delete");
-    }
-
-    private static void addFilm(Film film) throws DaoException {
-        boolean added = filmDao.create(film);
-        System.out.println(film);
-        System.out.println(added ? "Added" : "Did not add");
-    }
-
-    private static void showFilmWithId(int id) throws DaoException {
-        var film = filmDao.findEntityById(id);
-        System.out.println(film);
-    }
-
-    private static void showAllFilms() throws DaoException {
-        var films = filmDao.findAll();
-        for(var film : films){
-            System.out.println(film);
-        }
-    }
 }
