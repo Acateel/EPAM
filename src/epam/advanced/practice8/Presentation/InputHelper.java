@@ -1,5 +1,6 @@
 package epam.advanced.practice8.Presentation;
 
+import epam.advanced.practice8.Entities.Actor;
 import epam.advanced.practice8.Entities.Film;
 
 import java.util.InputMismatchException;
@@ -56,7 +57,7 @@ public class InputHelper {
         while (true) {
             System.out.println("Write year:");
             int year = scanner.nextInt();
-            if (1800 < year) {
+            if (1700 < year) {
                 return year;
             } else {
                 showError("Not format");
@@ -69,7 +70,7 @@ public class InputHelper {
             System.out.println("Write Country");
             String country = scanner.nextLine();
             if (country.length() <= 2) {
-                showError("Short title");
+                showError("Short country name");
             } else {
                 return country;
             }
@@ -82,6 +83,38 @@ public class InputHelper {
         film.setReleaseYear(getYear());
         film.setReleaseCounty(getCountry());
         return film;
+    }
+
+    public static String getFirstName(){
+        while (true) {
+            System.out.println("Write first name");
+            String firstName = scanner.nextLine();
+            if (firstName.length() <= 2) {
+                showError("Short first name");
+            } else {
+                return firstName;
+            }
+        }
+    }
+
+    public static String getLastName(){
+        while (true) {
+            System.out.println("Write last name");
+            String lastName = scanner.nextLine();
+            if (lastName.length() <= 2) {
+                showError("Short last name");
+            } else {
+                return lastName;
+            }
+        }
+    }
+
+    public static Actor getActor(){
+        Actor actor = new Actor();
+        actor.setFirstName(getFirstName());
+        actor.setLastName(getLastName());
+        actor.setBirdsYear(getYear());
+        return actor;
     }
 
     public static void showError(String message) {
