@@ -6,6 +6,7 @@ import epam.advanced.practice8.Dao.DaoException;
 import epam.advanced.practice8.Dao.FilmDao;
 import epam.advanced.practice8.Entities.Actor;
 import epam.advanced.practice8.Entities.Film;
+import epam.advanced.practice8.Presentation.MainMenu;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -19,8 +20,9 @@ public class Main {
         );
         filmDao = new FilmDao(connectionPool);
         actorDao = new ActorDao(connectionPool);
-        
-        showAllFilms();
+
+        MainMenu mainMenu = new MainMenu(filmDao, actorDao);
+        mainMenu.Start();
     }
 
     private static void deleteOldFilm(int years) throws DaoException {
