@@ -25,6 +25,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/epam/advanced/practice2/resourses" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/epam/advanced/practice1/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/epam/advanced/practice8/SQLData" type="java-resource" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library" exported="">
